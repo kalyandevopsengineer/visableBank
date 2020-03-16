@@ -113,10 +113,41 @@ Database design consists of four tables namely:
 
 - Clone the code repository from github.
 
-
+```
+ruby@ruby:~$ git clone https://github.com/kalyandevopsengineer/visableBank.git
+Cloning into 'visableBank'...
+remote: Enumerating objects: 207, done.
+remote: Counting objects: 100% (207/207), done.
+remote: Compressing objects: 100% (139/139), done.
+remote: Total 207 (delta 58), reused 199 (delta 50), pack-reused 0
+Receiving objects: 100% (207/207), 41.49 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (58/58), done.
+Checking connectivity... done.
+ruby@ruby:~$
+```
 
 - Change directory to root of the application.
-
+```
+ruby@ruby:~$ cd visableBank
+ruby@ruby:~/visableBank$ ls -l
+total 80
+drwxrwxr-x 10 ruby ruby  4096 Mar 16 17:50 app
+drwxrwxr-x  2 ruby ruby  4096 Mar 16 17:50 bin
+drwxrwxr-x  5 ruby ruby  4096 Mar 16 17:50 config
+-rw-rw-r--  1 ruby ruby   130 Mar 16 17:50 config.ru
+drwxrwxr-x  3 ruby ruby  4096 Mar 16 17:50 db
+-rw-rw-r--  1 ruby ruby  1915 Mar 16 17:50 Gemfile
+-rw-rw-r--  1 ruby ruby  4381 Mar 16 17:50 Gemfile.lock
+drwxrwxr-x  4 ruby ruby  4096 Mar 16 17:50 lib
+drwxrwxr-x  2 ruby ruby  4096 Mar 16 17:50 log
+drwxrwxr-x  2 ruby ruby  4096 Mar 16 17:50 public
+-rw-rw-r--  1 ruby ruby   227 Mar 16 17:50 Rakefile
+-rw-rw-r--  1 ruby ruby 17196 Mar 16 17:50 README.md
+drwxrwxr-x  8 ruby ruby  4096 Mar 16 17:50 test
+drwxrwxr-x  2 ruby ruby  4096 Mar 16 17:50 tmp
+drwxrwxr-x  3 ruby ruby  4096 Mar 16 17:50 vendor
+ruby@ruby:~/visableBank$
+```
 - Start the rails puma development server on port 3000 and ip address of your machine.
 
 ```ruby
