@@ -71,9 +71,8 @@ class AccountsController < ApplicationController
       if is_mapped.count > 0
         json_response({error: 'Account may be associated with Beneficiary, remove mapping in join table.', status: 'Failed', code: 500})
       else
-        json_response("hello")
-        #json_response(@account.destroy)
-        #json_response({message: 'Account deleted.', status: 'Success', code: 200})
+        @account.destroy
+        json_response({message: 'Account deleted.', status: 'Success', code: 200})
       end
     else
       json_response({error: 'Account not found.', status: 'Failed', code: 500})
