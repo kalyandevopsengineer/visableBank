@@ -1,5 +1,5 @@
 class Account < ApplicationRecord
-  has_and_belongs_to_many :beneficiaries
+  has_and_belongs_to_many :beneficiaries, :join_table => 'account_beneficiaries'
   has_many :account_beneficiaries
 
   validates_presence_of :account_name

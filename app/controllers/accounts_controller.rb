@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
   def index
-    @accounts = Account.all
-    json_response(@accounts)
+    @account = Account.all
+    json_response(@account)
   end
 
   def show
@@ -47,7 +47,7 @@ class AccountsController < ApplicationController
       end
 
       @account.update_attributes(:account_status => stat)
-      json_response('Account status updated.')
+      json_response({message: 'Account status updated.', status: 'Success', code: 200})
     else
       json_response({error: 'Account doesn\'t exists.', status: 'Failed', code: 500})
     end
@@ -63,13 +63,21 @@ class AccountsController < ApplicationController
   end
 
   def destroy
-    @account = Account.find_by_id(params[:id])
+    @account  = Account.find_by_id(params[:id])
     if @account
-      @account.destroy
+      verify_id = @account[:id]
+      is_mapped = AccountBeneficiary.where(:account_id => verify_id)
+
+      if is_mapped.count > 0
+        json_response({error: 'Account may be associated with Beneficiary, remove mapping in join table.', status: 'Failed', code: 500})
+      else
+        json_response("hello")
+        #json_response(@account.destroy)
+        #json_response({message: 'Account deleted.', status: 'Success', code: 200})
+      end
     else
-      json_response({error: 'Account doesn\'t exists.', status: 'Failed', code: 500})
+      json_response({error: 'Account not found.', status: 'Failed', code: 500})
     end
-    json_response(@account)
   end
 
   private
