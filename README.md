@@ -58,15 +58,15 @@ httpie is used to make the REST API CRUD calls.
 
 The application design consists of four controller classes namely:
 
-- 1.accounts_controller.
-- 2.beneficiaries_controller.
-- 3.account_beneficiaries_controller.
-- 4.transactions_controller.
+- accounts_controller.
+- beneficiaries_controller.
+- account_beneficiaries_controller.
+- transactions_controller.
 
-Markup : 1. The transactions_controller class serves as a service class to perform transfer of money between accounts. 
-	 2. Verify the account/beneficiary accounts are active.
-	 3. Add money to the beneficiary account.
-	 4. Deduct money from the account holder account.
+- The transactions_controller class serves as a service class to perform transfer of money between accounts. 
+- Verify the account/beneficiary accounts are active.
+- Add money to the beneficiary account.
+- Deduct money from the account holder account.
 
 ###### Database & Dump file:
 
@@ -77,47 +77,45 @@ MySQL database is used for backend REST API connectivity to store the records. D
 
 Database design consists of four tables namely:
 
-Markup : 1.accounts
-         2.beneficiaries
-         3.account_beneficiaries
-         4.transactions
+- accounts
+- beneficiaries
+- account_beneficiaries
+- transactions
 
 ###### Database tables design:
 
-Markup : 1.Accounts table stores the bank account holder's details.
-         2.Beneficiaries table stores the beneficiaries of account holder's.
-         3.Account_beneficiaries table stores the primary keys of accounts and beneficiaries tables as foreign keys.
-         4.Transactions table stores the transfer transactions of accounts to beneficiaries.
-         5.Account name, account number, beneficiary name, beneficairy number, account_id, beneficiary_id table columns are indexed for better performance of code.
+- Accounts table stores the bank account holder's details.
+- Beneficiaries table stores the beneficiaries of account holder's.
+- Account_beneficiaries table stores the primary keys of accounts and beneficiaries tables as foreign keys.
+- Transactions table stores the transfer transactions of accounts to beneficiaries.
+- Account name, account number, beneficiary name, beneficairy number, account_id, beneficiary_id table columns are indexed for better performance of code.
 
 ###### Application code functionality:
 
-Markup : 1.Accounts table has account holder's records with account name, account number and account balance with account status.
-         2.Account holder with active status can be mapped with a beneficiary and can transfer amount to beneficiary. 
-         3.Account and Beneficiary records are unique and cannot be added multiple times in the same tables.
-         4.Beneficiary table has records with beneficiary name, beneficiary account number and status.
-         5.Beneficiary record can be delete if and only if the beneficiary is not mapped with any account holder.
-         6.Beneficiary record cannot be edited after adding into the database.
-         7.Account_Beneficiaries table has records with foreign keys of both accounts and beneficaries tables which are primary keys of accounts and beneficiaries taables.
-         8.Many-to-Many rich association is established between accounts table and beneficiary tables using acccont_beneficiaries table because an account holder can have many beneficiaries and a beneficiary can be an account holder in the same bank.
-         9.Account_beneficiaries table stores the association of accounts and beneficiaries tables.
-         10. Default value for accounts and beneficiaries status column is "active".
-         11.Transactions table stores the transfer of amount between accounts and beneficiaries tables. Account id and Beneficiary id are passed as primary parameters to verify the account and beneficiary association from account_beneficiaries table and the status of account holder and beneficiary as active.
-         12.Account holder information is verified before transfer to check the account balance from accounts table, status of account holder and updating the account holder account balance after the transaction is stored in the transactions table.
-         13.Transactions table provides the last ten transactions of an account and benificiary.
-         14.Transactions records cannot be edited or deleted and are required for legal retention purpose.
+- Accounts table has account holder's records with account name, account number and account balance with account status.
+- Account holder with active status can be mapped with a beneficiary and can transfer amount to beneficiary. 
+- Account and Beneficiary records are unique and cannot be added multiple times in the same tables.
+- Beneficiary table has records with beneficiary name, beneficiary account number and status.
+- Beneficiary record can be delete if and only if the beneficiary is not mapped with any account holder.
+- Beneficiary record cannot be edited after adding into the database.
+- Account_Beneficiaries table has records with foreign keys of both accounts and beneficaries tables which are primary keys of accounts and beneficiaries taables.
+- Many-to-Many rich association is established between accounts table and beneficiary tables using acccont_beneficiaries table because an account holder can have many beneficiaries and a beneficiary can be an account holder in the same bank.
+- Account_beneficiaries table stores the association of accounts and beneficiaries tables.
+- Default value for accounts and beneficiaries status column is "active".
+- Transactions table stores the transfer of amount between accounts and beneficiaries tables. Account id and Beneficiary id are passed as primary parameters to verify the account and beneficiary association from account_beneficiaries table and the status of account holder and beneficiary as active.
+- Account holder information is verified before transfer to check the account balance from accounts table, status of account holder and updating the account holder account balance after the transaction is stored in the transactions table.
+- Transactions table provides the last ten transactions of an account and benificiary.
+- Transactions records cannot be edited or deleted and are required for legal retention purpose.
 
 ###### Code Usage:
 
-Markup : 1. Clone the code repository from github.
+- Clone the code repository from github.
 
 
 
-Markup : 2. Change directory to root of the application.
+- Change directory to root of the application.
 
-
-
-Markup : 3. Start the rails puma development server on port 3000 and ip address of your machine.
+- Start the rails puma development server on port 3000 and ip address of your machine.
 
 ```ruby
 ruby@ruby:~/visableBank$ rails server -b 0.0.0.0 -p 3000
