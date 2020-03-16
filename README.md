@@ -1,4 +1,4 @@
-##Introduction
+## Introduction
 
 REST API end points implementation for banking/financial services is a challenging task in which the application design, database design and code optimization for fast execution of code is the primary objective. Ruby on rails provides a very rich set of model, view, controller web/api framework class design for implementing the code in a simplified way.
 
