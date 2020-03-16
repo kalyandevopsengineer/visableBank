@@ -58,10 +58,10 @@ httpie is used to make the REST API CRUD calls.
 
 The application design consists of four controller classes namely:
 
-Markup : 1.accounts_controller.
-	 2.beneficiaries_controller.
-	 3.account_beneficiaries_controller.
-	 4.transactions_controller.
+- 1.accounts_controller.
+- 2.beneficiaries_controller.
+- 3.account_beneficiaries_controller.
+- 4.transactions_controller.
 
 Markup : 1. The transactions_controller class serves as a service class to perform transfer of money between accounts. 
 	 2. Verify the account/beneficiary accounts are active.
