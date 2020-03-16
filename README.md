@@ -1,4 +1,4 @@
-Introduction
+##Introduction
 
 REST API end points implementation for banking/financial services is a challenging task in which the application design, database design and code optimization for fast execution of code is the primary objective. Ruby on rails provides a very rich set of model, view, controller web/api framework class design for implementing the code in a simplified way.
 
@@ -52,6 +52,20 @@ ruby@ruby:~/visableBank$
 Client calls:
 
 httpie is used to make the REST API CRUD calls.
+
+Application design:
+
+The application design consists of four controller classes namely:
+
+1.accounts_controller.
+2.beneficiaries_controller.
+3.account_beneficiaries_controller.
+4.transactions_controller.
+
+1. The transactions_controller class serves as a service class to perform transfer of money between accounts. 
+2. Verify the account/beneficiary accounts are active.
+3. Add money to the beneficiary account.
+4. Deduct money from the account holder account.
 
 Database & Dump file:
 
