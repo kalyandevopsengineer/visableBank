@@ -63,6 +63,8 @@ The application design consists of four controller classes namely:
 - account_beneficiaries_controller.
 - transactions_controller.
 
+###### Service class function:
+
 - The transactions_controller class serves as a service class to perform transfer of money between accounts. 
 - Verify the account/beneficiary accounts are active.
 - Add money to the beneficiary account.
