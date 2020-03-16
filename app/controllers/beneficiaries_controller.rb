@@ -25,8 +25,13 @@ class BeneficiariesController < ApplicationController
     if !is_valid
       json_response({error: @beneficiary.errors, status: 'Failed', code: 500})
     else
-      @beneficiary.save
-      json_response(@beneficiary)
+      @verify_account = Account.where(:account_number => @beneficiary[:beneficiary_number], :account_name => @beneficiary[:beneficiary_name])
+      if @verify_account.empty?
+        json_response({error: 'Beneficiary must be an account holder.', status: 'Failed', code: 500})
+      else
+        @beneficiary.save
+        json_response(@beneficiary)
+      end
     end
   end
 

@@ -10,7 +10,7 @@ class AccountBeneficiariesController < ApplicationController
     if @accountbeneficiary
       json_response(@accountbeneficiary)
     else
-      json_response('Beneficiary doesn\'t exist.')
+      json_response({error: 'Beneficiary doesn\'t exist.', status: 'Failed', code: 500})
     end
   end
 
@@ -30,27 +30,32 @@ class AccountBeneficiariesController < ApplicationController
       @verify_beneficiary = Beneficiary.find_by_id(@accountbeneficiary[:beneficiary_id])
 
       if @verify_account && @verify_beneficiary
+        account = @verify_account[:account_number]
+        beneficiary = @verify_beneficiary[:beneficiary_number]
         record_exists = AccountBeneficiary.where(:account_id => @accountbeneficiary[:account_id], :beneficiary_id => @accountbeneficiary[:beneficiary_id])
-        if record_exists.count > 0
-          json_response('Account and Beneficiary already exist.')
+
+        if account == beneficiary
+          json_response({error: 'Account holder cannot transfer amount to his own account.', status: 'Failed', code: 500})
+        elsif record_exists.count > 0
+          json_response({error: 'Account and Beneficiary association already exist.', status: 'Failed', code: 500})
         else
           @accountbeneficiary.save
           json_response(@accountbeneficiary)
         end
       else
-        json_response('Account and/or Beneficiary doesn\'t exists.')
+        json_response({error: 'Account and/or Beneficiary doesn\'t exists.', status: 'Failed', code: 500})
       end
     else
-      json_response({error: 'Amount transfer cannot execute on inactive accounts and/or beneficiaries.', status: '500'})
+      json_response({error: 'Amount transfer cannot execute on inactive accounts and/or beneficiaries.', status: 'Failed', code: '500'})
     end
   end
 
   def edit
-    json_response({error: 'Edit operation not supported.', status: 500})
+    json_response({error: 'Edit operation not supported.', status: 'Failed', code: 500})
   end
 
   def update
-    json_response({error: 'Update operation not supported.', status: 500})
+    json_response({error: 'Update operation not supported.', status: 'Failed', code: 500})
   end
 
   def delete
@@ -64,7 +69,7 @@ class AccountBeneficiariesController < ApplicationController
       @accountbeneficiary.destroy
       json_response(@accountbeneficiary)
     else
-      json_response({error: 'Account and/or Beneficiary doesn\'t exists.', status: 500})
+      json_response({error: 'Account and/or Beneficiary doesn\'t exists.', status: 'Failed', code: 500})
     end
   end
 
