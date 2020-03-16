@@ -14,47 +14,47 @@ Release:        16.04
 Codename:       xenial
 ruby@ruby:~/visableBank$
 ```
-Ruby environment version:
+###### Ruby environment version:
 ```
 ruby@ruby:~/visableBank$ rbenv --version
 rbenv 1.1.2-26-gc6324ff
 ruby@ruby:~/visableBank$
 ```
-Ruby version:
+###### Ruby version:
 ```
 ruby@ruby:~/visableBank$ ruby --version
 ruby 2.7.0p0 (2019-12-25 revision 647ee6f091) [x86_64-linux]
 ruby@ruby:~/visableBank$
 ```
-Rails version:
+###### Rails version:
 ```
 ruby@ruby:~/visableBank$ rails --version
 Rails 5.0.7.2
 ruby@ruby:~/visableBank$
 ```
-Gem version:
+###### Gem version:
 ```
 ruby@ruby:~/visableBank$ gem --version
 3.1.2
 ruby@ruby:~/visableBank$
 ```
-MySQL version:
+###### MySQL version:
 ```
 ruby@ruby:~/visableBank$ gem list --local | grep mysql
 mysql2 (0.5.3)
 ruby@ruby:~/visableBank$
 ```
-Puma version:
+###### Puma version:
 ```
 ruby@ruby:~/visableBank$ gem list --local | grep puma
 puma (3.12.4)
 ruby@ruby:~/visableBank$
 ```
-Client calls:
+###### Client calls:
 
 httpie is used to make the REST API CRUD calls.
 
-Application design:
+###### Application design:
 
 The application design consists of four controller classes namely:
 
@@ -68,12 +68,12 @@ The application design consists of four controller classes namely:
 3. Add money to the beneficiary account.
 4. Deduct money from the account holder account.
 
-Database & Dump file:
+###### Database & Dump file:
 
 MySQL database is used for backend REST API connectivity to store the records. Database dump file can be found in the repository with name "visablebank_development.sql" to understand the database schema and structure of tables and their associations. 
 
 
-Database Design:
+###### Database Design:
 
 Database design consists of four tables namely:
 1.accounts
@@ -81,7 +81,7 @@ Database design consists of four tables namely:
 3.account_beneficiaries
 4.transactions
 
-Database tables design:
+###### Database tables design:
 
 1.Accounts table stores the bank account holder's details.
 2.Beneficiaries table stores the beneficiaries of account holder's.
@@ -89,7 +89,7 @@ Database tables design:
 4.Transactions table stores the transfer transactions of accounts to beneficiaries.
 5.Account name, account number, beneficiary name, beneficairy number, account_id, beneficiary_id table columns are indexed for better performance of code.
 
-Application code functionality:
+###### Application code functionality:
 
 1.Accounts table has account holder's records with account name, account number and account balance with account status.
 2.Account holder with active status can be mapped with a beneficiary and can transfer amount to beneficiary.
@@ -106,7 +106,7 @@ Application code functionality:
 13.Transactions table provides the last ten transactions of an account and benificiary.
 14.Transactions records cannot be edited or deleted and are required for legal retention purpose.
 
-Code Usage:
+###### Code Usage:
 
 1. Clone the code repository from github.
 
@@ -127,9 +127,9 @@ Puma starting in single mode...
 Use Ctrl-C to stop
 ```
 
-REST Operations:
+## REST Operations:
 
-1. Add an account
+###### 1. Add an account
 ```ruby
 ruby@ruby:~/visableBank$ http POST 10.0.0.17:3000/accounts account_number=8686947001 account_name=Kalyan account_balance=70000
 HTTP/1.1 200 OK
@@ -150,7 +150,7 @@ X-Runtime: 0.080994
     "updated_at": "2020-03-16T08:26:11.000Z"
 }
 ```
-2. View an account
+###### 2. View an account
 ```ruby
 ruby@ruby:~/visableBank$ http GET 10.0.0.17:3000/accounts/1
 HTTP/1.1 200 OK
@@ -171,7 +171,7 @@ X-Runtime: 0.005536
     "updated_at": "2020-03-16T08:31:02.000Z"
 }
 ```
-3.View all accounts
+###### 3.View all accounts
 ```ruby
 ruby@ruby:~/visableBank$ http GET 10.0.0.17:3000/accounts
 HTTP/1.1 200 OK
@@ -202,9 +202,9 @@ X-Runtime: 0.004601
         "updated_at": "2020-03-16T08:31:02.000Z"
     }
 ]
-```ruby
-4.Edit Account
 ```
+###### 4.Edit Account
+```ruby
 ruby@ruby:~/visableBank$ http PUT 10.0.0.17:3000/accounts/1
 HTTP/1.1 200 OK
 Cache-Control: max-age=0, private, must-revalidate
@@ -220,7 +220,7 @@ X-Runtime: 0.036793
     "status": "Success"
 }
 ```
-5.Delete Account
+###### 5.Delete Account
 ```ruby
 ruby@ruby:~/visableBank$ http DELETE 10.0.0.17:3000/accounts/4
 HTTP/1.1 200 OK
@@ -237,7 +237,7 @@ X-Runtime: 0.015616
     "status": "Success"
 }
 ```
-6.Add a beneficiary
+###### 6.Add a beneficiary
 ```ruby
 ruby@ruby:~/visableBank$ http POST 10.0.0.17:3000/beneficiaries beneficiary_number=8686947002 beneficiary_name=Kiran account_balance=80000
 HTTP/1.1 200 OK
@@ -257,7 +257,7 @@ X-Runtime: 0.012357
     "updated_at": "2020-03-16T08:28:05.000Z"
 }
 ```
-7.View a beneficiary
+###### 7.View a beneficiary
 ```ruby
 ruby@ruby:~/visableBank$ http GET 10.0.0.17:3000/beneficiaries/1
 HTTP/1.1 200 OK
@@ -277,7 +277,7 @@ X-Runtime: 0.004309
     "updated_at": "2020-03-16T08:28:05.000Z"
 }
 ```
-8.View all beneficiaries.
+###### 8.View all beneficiaries.
 ```ruby
 ruby@ruby:~/visableBank$ http GET 10.0.0.17:3000/beneficiaries
 HTTP/1.1 200 OK
@@ -299,7 +299,7 @@ X-Runtime: 0.003910
     }
 ]
 ```
-9.Edit a beneficiary.
+###### 9.Edit a beneficiary.
 ```ruby
 ruby@ruby:~/visableBank$ http PUT 10.0.0.17:3000/beneficiaries/1
 HTTP/1.1 200 OK
@@ -316,7 +316,7 @@ X-Runtime: 0.009698
     "status": "Success"
 }
 ```
-10. Delete a beneficiary.
+###### 10. Delete a beneficiary.
 ```ruby
 ruby@ruby:~/visableBank$ http DELETE 10.0.0.17:3000/beneficiaries/1
 HTTP/1.1 200 OK
@@ -333,7 +333,7 @@ X-Runtime: 0.013605
     "status": "Success"
 }
 ```
-11. Add account beneficiaries association.
+###### 11. Add account beneficiaries association.
 ```ruby
 ruby@ruby:~/visableBank$ http POST 10.0.0.17:3000/account_beneficiaries account_id=1 beneficiary_id=1
 HTTP/1.1 200 OK
@@ -352,7 +352,7 @@ X-Runtime: 0.022655
     "updated_at": "2020-03-16T08:30:01.000Z"
 }
 ```
-12. Edit acount beneficiaries association.
+###### 12. Edit acount beneficiaries association.
 ```ruby
 ruby@ruby:~/visableBank$ http PUT 10.0.0.17:3000/account_beneficiaries/1
 HTTP/1.1 200 OK
@@ -369,7 +369,7 @@ X-Runtime: 0.002883
     "status": "Failed"
 }
 ```
-13. Delete account beneficiaries association.
+###### 13. Delete account beneficiaries association.
 ```ruby
 ruby@ruby:~/visableBank$ http DELETE 10.0.0.17:3000/account_beneficiaries/1
 HTTP/1.1 200 OK
@@ -388,7 +388,7 @@ X-Runtime: 0.013683
     "updated_at": "2020-03-16T08:30:01.000Z"
 }
 ```
-14. View all account beneficiaries.
+###### 14. View all account beneficiaries.
 ```ruby
 ruby@ruby:~/visableBank$ http GET 10.0.0.17:3000/beneficiaries
 HTTP/1.1 200 OK
@@ -409,9 +409,9 @@ X-Runtime: 0.004049
         "updated_at": "2020-03-16T08:28:05.000Z"
     }
 ]
-```ruby
-15. View an account beneficiary.
 ```
+###### 15. View an account beneficiary.
+```ruby
 ruby@ruby:~/visableBank$ http GET 10.0.0.17:3000/beneficiaries/1
 HTTP/1.1 200 OK
 Cache-Control: max-age=0, private, must-revalidate
@@ -430,7 +430,7 @@ X-Runtime: 0.004084
     "updated_at": "2020-03-16T08:28:05.000Z"
 }
 ```
-16. Add transaction.
+###### 16. Add transaction.
 ```ruby
 ruby@ruby:~/visableBank$ http POST 10.0.0.17:3000/transactions account_id=1 beneficiary_id=1 account_number=8686947001 account_name=Kalyan beneficiary_number=8686947002 beneficiary_name=Kiran amount_debited=1000 amount_credited=1000
 HTTP/1.1 200 OK
@@ -447,7 +447,7 @@ X-Runtime: 0.033424
     "status": "Success"
 }
 ```
-17. Edit transaction.
+###### 17. Edit transaction.
 ```ruby
 ruby@ruby:~/visableBank$ http PUT 10.0.0.17:3000/transactions/1
 HTTP/1.1 200 OK
@@ -464,7 +464,7 @@ X-Runtime: 0.002922
     "status": "Failed"
 }
 ```
-18. Delete transaction.
+###### 18. Delete transaction.
 ```ruby
 ruby@ruby:~/visableBank$ http DELETE 10.0.0.17:3000/transactions/1
 HTTP/1.1 200 OK
@@ -481,7 +481,7 @@ X-Runtime: 0.003238
     "status": "Failed"
 }
 ```
-19. View all transactions.
+###### 19. View all transactions.
 ```ruby
 ruby@ruby:~/visableBank$ http GET 10.0.0.17:3000/transactions
 HTTP/1.1 200 OK
@@ -508,7 +508,7 @@ X-Runtime: 0.004483
     }
 ]
 ```
-20. View a transaction.
+###### 20. View a transaction.
 ```ruby
 ruby@ruby:~/visableBank$ http GET 10.0.0.17:3000/transactions/1
 HTTP/1.1 200 OK
